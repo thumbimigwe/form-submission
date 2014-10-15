@@ -1,0 +1,106 @@
+<html>
+<head>
+
+    <!-- this section loads the libraries-->
+  <script src="https://cdn.firebase.com/js/client/1.0.15/firebase.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+   <script>
+       // Create our Firebase reference
+
+      var positionRef = new Firebase('https://iit-climbing-test.firebaseio.com/Count/Count');
+      var scoreListRef = new Firebase('https://iit-climbing-test.firebaseio.com//data');
+      var count = 0;
+       </script>
+
+    <!-- here we start to get the body of the page with the firebase implementation -->
+  <link rel="stylesheet" type="text/css" href="/resources/tutorial/css/example.css">
+</head>
+<body>
+
+<div class="example-base example-leaderboard l-demo-container">
+  <table id="leaderboardTable">
+    <tr>
+      <th>Position</th>
+      <th>Name</th>
+      <th>aNum</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Comment</th>
+      <th>Time</th>
+      </tr>
+  </table>
+
+</div>
+<script>
+
+	//Amount of data displayed
+  var MAX_SHOWN_DATA = 30;
+
+  // Keep a mapping of firebase locations to HTML elements, so we can move / remove elements as necessary.
+  var htmlForPath = {};
+
+  // Helper function that takes a new climber snapshot and adds an appropriate row to our table.
+  function handleTimeAdded(scoreSnapshot, prevTimeName) {
+    var newTimeRow = $("<tr/>");
+    newTimeRow.append($("<td/>").text(scoreSnapshot.val().count));
+    newTimeRow.append($("<td/>").append($("<em/>").text(scoreSnapshot.val().name)));
+    newTimeRow.append($("<td/>").text(scoreSnapshot.val().anum));
+    newTimeRow.append($("<td/>").text(scoreSnapshot.val().email));
+    newTimeRow.append($("<td/>").text(scoreSnapshot.val().phone));
+    newTimeRow.append($("<td/>").text(scoreSnapshot.val().comment));
+    newTimeRow.append($("<td/>").text(scoreSnapshot.val().time));
+    //newTimeRow.append($("<td/>").text(scoreSnapshot.val().time));
+
+    // Store a reference to the table row so we can get it again later.
+    htmlForPath[scoreSnapshot.name()] = newTimeRow;
+
+    // Insert the new score in the appropriate place in the table.
+    if (prevTimeName === null) {
+      $("#leaderboardTable").append(newTimeRow);
+    }
+    else {
+      var lowerTimeRow = htmlForPath[prevTimeName];
+      //lowerTimeRow.before(newTimeRow);
+	lowerTimeRow.after(newTimeRow);
+
+    }
+  }
+
+  // Helper function to handle a score object being removed; just removes the corresponding table row.
+  function handleTimeRemoved(scoreSnapshot) {
+    var removedTimeRow = htmlForPath[scoreSnapshot.name()];
+    removedTimeRow.remove();
+    delete htmlForPath[scoreSnapshot.name()];
+  }
+
+  // Create a view to only receive callbacks for the last MAX_SHOWN_DATA scores
+  var scoreListView = scoreListRef.limit(MAX_SHOWN_DATA);
+
+  // Add a callback to handle when a new score is added.
+  scoreListView.on('child_added', function (newTimeSnapshot, prevTimeName) {
+    handleTimeAdded(newTimeSnapshot, prevTimeName);
+  });
+
+  // Add a callback to handle when a score is removed
+  scoreListView.on('child_removed', function (oldTimeSnapshot) {
+    handleTimeRemoved(oldTimeSnapshot);
+  });
+
+  // Add a callback to handle when a score changes or moves positions.
+  var changedCallback = function (scoreSnapshot, prevTimeName) {
+    handleTimeRemoved(scoreSnapshot);
+    handleTimeAdded(scoreSnapshot, prevTimeName);
+  };
+  scoreListView.on('child_moved', changedCallback);
+  scoreListView.on('child_changed', changedCallback);
+
+</script>
+
+
+
+
+</body>
+</html>
+

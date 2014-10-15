@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/form-sub.js"></script>
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="https://cdn.firebase.com/js/client/1.0.15/firebase.js"></script>
+        <script type="text/javascript"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> 
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+      
+
+
+        <script>
+           // Create our Firebase reference
+          var positionRef = new Firebase('https://iit-climbing-test.firebaseio.com/Count/Count');
+          var scoreListRef = new Firebase('https://iit-climbing-test.firebaseio.com//data');
+          
+          positionRef.on('value', function(snapshot) {
+                    count = snapshot.val();
+                }, function (errorObject) {
+  console.log('The read failed: ' + errorObject.code);
+});
+          
+        </script>
+        </head>
+        
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- What the user will see and enter -->
+        <p>Enter your Information to sign up for the NEW Climbing Event.</p>
+        
+        <table style="width:100%">
+            <tr>
+                <td>Name*: </td>
+                <td><input class="input-name" type="text" id="nameInput" placeholder="Enter Name"></td>
+                </tr>
+            <tr>
+                <td>A#*:</td>
+                <td><input class="input-anumber" type="number" id="aNumber" placeholder="Enter A# without the A"></td>
+                </tr>
+            <tr>
+                <td>Email*: </td>
+                <td><input class="input-email" type="email" id="emailInput" placeholder="Enter Email Here"></td>
+                </tr>
+            <tr>
+                <td>Phone: </td>
+                <td><input class="input-phone" type="number" id="phoneInput" placeholder="Enter Phone #"></td>
+                </tr>
+            <tr>
+                <td>Comments: </td>
+                <td><textarea class="span5" id="commentInput" rows="3" placeholder="What's up?" required></textarea></td>
+                </tr>
+            <tr>
+                <td>*Required</td>
+                <td><button onclick="submitForm()">Submit</button>
+                </tr>
+
+        </table>
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
+</html>
