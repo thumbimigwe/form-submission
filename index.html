@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="bower_components/bootstrap/">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <script src="js/form-sub.js"></script>
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     <script src="https://cdn.firebase.com/js/client/1.0.15/firebase.js"></script>
@@ -49,6 +49,11 @@
 <![endif]-->
 
 <!-- What the user will see and enter -->
+
+<div class="navbar navbar-inverse navbar-static-top">
+
+
+</div>
 <p>Enter your Information to sign up for the NEW Climbing Event.</p>
 
 <table style="width:100%">
@@ -79,6 +84,33 @@
     </tr>
 
 </table>
+
+
+<form class="form" role="form">
+
+    <div class="row">
+    <div class="form-group" >
+        <label class="sr-only" for="exampleInputEmail2">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+    </div></div>
+
+    <div class="row">
+    <div class="form-group col-xs-5 col-lg-2">
+        <div class="input-group">
+            <div class="input-group-addon">@</div>
+            <input class="form-control" type="email" placeholder="Enter email">
+        </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="form-group">
+        <label class="sr-only" for="exampleInputPassword2">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+    </div>
+    </div>
+
+    <button type="" class="btn btn-default">Sign in</button>
+</form>
 
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
