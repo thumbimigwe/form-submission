@@ -76,8 +76,17 @@ function sendToFireBase(name, anum, email, phone, comment, timeInMs) {
 
 }
 
+function canISubmitForm(){
+
+
+
+}
+
+
 
 function submitForm() {
+
+
 
     var name = $("#nameInput").val();
     var anum = $("#aNumber").val();
@@ -88,7 +97,7 @@ function submitForm() {
     var timeInMs = Date.now();
 
     if ((name != "" && email != "" && isNumeric(parseInt(anum))) || (name != "" && email != "" && isNumeric(parseInt(anum)) && isNumeric(parseInt(phone)))) {
-        sendToFireBase(name, anum, email, phone, comment, timeInMs);
+        //sendToFireBase(name, anum, email, phone, comment, timeInMs);
 
         //alert("Your submission has been saved. You will receive an email within the hour. If you have not received the email please contact us at climbing@iit.edu")
     }
@@ -96,13 +105,18 @@ function submitForm() {
 
     else {
         alert("Please enter Name,A#,Email, and Phone correctly.")
-    }
+        }
+
 }
+
 
 
 $(document).ready(function() {
     $('.registerForm').bootstrapValidator({
+        //container: 'tooltip',
+        live: 'enabled',
         message: 'This value is not valid',
+
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -137,5 +151,19 @@ $(document).ready(function() {
                 }
             }
         }
-    });
+    })
+        .on('success.form.bv', function(e) {
+            // Prevent submit form
+            e.preventDefault();
+            var once = true;
+            var $form     = $(e.target),
+                validator = $form.data('bootstrapValidator');
+            $form.find('.alert').html('Thanks for signing up. Now you can sign in as ' + validator.getFieldElements('username').val()).show();
+
+            //this causes a infinite loop how to fix?
+            if (once){
+            submitForm();
+            once = false; }
+
+        });
 });

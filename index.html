@@ -65,7 +65,7 @@
 
 
 </div>
-<p>Enter your Information to sign up for the NEW Climbing Event.</p>
+<p>Enter your Information to sign up for the NEW Climbing Event. </p>
 
 <table style="width:100%">
     <tr>
@@ -98,28 +98,34 @@
 
 
 <form class="registerForm" role="form">
+    <div class="row">
+        <div class="form-group col-xs-5 col-lg-2">
+        <div class="input-group">
+                <div class="input-group-addon">Name</div>
+                <input name="email" class="form-control" type="emailInput" placeholder="enter email">
+            </div>
+            </div>
+        </div>
+
 
     <div class="row">
     <div class="form-group col-xs-5 col-lg-2">
         <div class="input-group">
             <div class="input-group-addon">@</div>
-            <input name="email" class="form-control" type="email" placeholder="enter email*">
+            <input name="email" class="form-control" type="emailInput" placeholder="enter email">
         </div>
         </div>
     </div>
-</form>
 
-<form class="registerForm">
-    <div class="form-group">
-        <label>Username</label>
-        <input type="text" class="form-control" name="username" />
+
+    <div class="form-actions">
+        <div class="col-sm-9 col-sm-offset-3">
+            <button type="submit" class="btn btn-success" onclick="canISubmitForm()">Validate</button>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label>Email address</label>
-        <input type="text" class="form-control" name="email" />
-    </div>
 </form>
+
 
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
