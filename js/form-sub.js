@@ -152,8 +152,8 @@ $(document).ready(function() {
                             message: 'The name must be more than 6 and less than 30 characters long'
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z0-9_]+$/,
-                            message: 'The name can only consist of alphabetical, number and underscore'
+                            regexp: /^[a-zA-Z]+$/,
+                            message: 'The name can only consist of alphabetical'
                         }
                     }
                 },
@@ -166,7 +166,23 @@ $(document).ready(function() {
                         message: 'The input is not a valid email address'
                     }
                 }
+            },
+            phonenum: {
+                validators: {
+                    notEmpty: {
+                        message: 'The phone is required and cannot be empty'
+                    },
+                    stringLength:{
+                        min:10,
+                        max:10,
+                        message: 'The input is not a valid phone number must be in format 3125673000'
+                    },
+                    digits: {
+                        message: 'The phone number must consist of digits only'
+                    }
+                }
             }
+
         }
     })
         .on('success.form.bv', function(e) {
@@ -179,7 +195,8 @@ $(document).ready(function() {
 
             //this causes a infinite loop how to fix?
             if (once){
-            submitForm();
+            alert("nice");
+            //submitForm();
             once = false; }
 
         });
