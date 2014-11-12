@@ -111,6 +111,10 @@ function submitForm() {
 
 
 
+<<<<<<< Updated upstream
+=======
+//this section is to verify the input
+>>>>>>> Stashed changes
 $(document).ready(function() {
     $('.registerForm').bootstrapValidator({
         //container: 'tooltip',
