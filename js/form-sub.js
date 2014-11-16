@@ -58,27 +58,21 @@ function sendToFireBase(name, anum, email, phone, comment, timeInMs) {
         //window.alert(count);
         //Add below sendEmail function that throws in an variables of text to say whats up.
         //Logic to see if your on the wait list or going
-        if (count > 2) {
+        if (count > 5) {
             var textInp = "Your are on the waitlist for the event. We will contact you if we get an opening. Thanks and Climb On!"
             sendEmail(email, name, textInp);
-            alert("Your on the waitlist. A confirmation email will be sent to you soon. Please close the page.");
+            //alert("Your on the waitlist. A confirmation email will be sent to you soon. Please close the page.");
         }
         else {
             var textInpp = "Your are in we will be evaluating the submissions and sending you more detailed email about the event."
             sendEmail(email, name, textInpp);
-            alert("Your in! A confirmation email will be sent to you soon. Please close the page.")
+            //alert("Your in! A confirmation email will be sent to you soon. Please close the page.")
         }
 
         userTimeRef.setWithPriority({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: count}, timeInMs);
     });
 
     //alert(count);
-
-}
-
-function canISubmitForm(){
-
-
 
 }
 
@@ -97,9 +91,9 @@ function submitForm() {
     var timeInMs = Date.now();
 
     if ((name != "" && email != "" && isNumeric(parseInt(anum))) || (name != "" && email != "" && isNumeric(parseInt(anum)) && isNumeric(parseInt(phone)))) {
-        //sendToFireBase(name, anum, email, phone, comment, timeInMs);
+        sendToFireBase(name, anum, email, phone, comment, timeInMs);
 
-        //alert("Your submission has been saved. You will receive an email within the hour. If you have not received the email please contact us at climbing@iit.edu")
+        alert("Your submission has been saved. You will receive an email within the hour. If you have not received the email please contact us at climbing@iit.edu")
     }
 
 
