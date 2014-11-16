@@ -89,10 +89,10 @@ function submitForm() {
 
 
     var name = $("#nameInput").val();
-    var anum = $("#aNumber").val();
+    var anum = $("#anumb").val();
     var email = $("#emailInput").val();
-    var phone = Number($("#phoneInput").val());
-    var comment = $("#commentInput").val();
+    var phone = Number($("#phonenum").val());
+    var comment = $("#commentsIn").val();
     //Returns the current time in mS
     var timeInMs = Date.now();
 
@@ -221,7 +221,7 @@ $(document).ready(function() {
             //this causes a infinite loop how to fix?
             if (once){
             alert("nice");
-            //submitForm();
+            submitForm();
             once = false; }
 
         });
