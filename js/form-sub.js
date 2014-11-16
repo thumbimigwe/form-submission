@@ -146,9 +146,9 @@ $(document).ready(function() {
                             message: 'The name is required and cannot be empty'
                         },
                         stringLength: {
-                            min: 6,
+                            min: 4,
                             max: 30,
-                            message: 'The name must be more than 6 and less than 30 characters long'
+                            message: 'Enter full name. The name must be more than 4 and less than 30 characters long'
                         },
                         regexp: {
                             regexp: /^[a-zA-Z ]+$/,
@@ -194,6 +194,16 @@ $(document).ready(function() {
                     },
                     digits: {
                         message: 'The phone number must consist of digits only'
+                    }
+                }
+            },
+            comments: {
+                validators: {
+
+                    stringLength:{
+                        min:0,
+                        max:250,
+                        message: '250 characters max length.'
                     }
                 }
             }

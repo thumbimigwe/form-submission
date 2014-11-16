@@ -67,35 +67,6 @@
 </div>
 <p>Enter your Information to sign up for the NEW Climbing Event. </p>
 
-<table style="width:100%">
-    <tr>
-        <td>Name*:</td>
-        <td><input class="input-name" type="text" id="nameInput" placeholder="Enter Name"></td>
-    </tr>
-    <tr>
-        <td>A#*:</td>
-        <td><input class="input-anumber" type="number" id="aNumber" placeholder="Enter A# without the A"></td>
-    </tr>
-    <tr>
-        <td>Email*:</td>
-        <td><input class="input-email" type="email" id="emailInput" placeholder="Enter Email Here"></td>
-    </tr>
-    <tr>
-        <td>Phone:</td>
-        <td><input class="input-phone" type="number" id="phoneInput" placeholder="Enter Phone #"></td>
-    </tr>
-    <tr>
-        <td>Comments:</td>
-        <td><textarea class="span5" id="commentInput" rows="3" placeholder="What's up?" required></textarea></td>
-    </tr>
-    <tr>
-        <td>*Required</td>
-        <td>
-            <button onclick="submitForm()">Submit</button>
-    </tr>
-
-</table>
-
 
 <form class="registerForm" role="form">
 
@@ -103,7 +74,7 @@
     <div class="form-group col-xs-5 col-lg-2">
         <div class="input-group">
              <div class="input-group-addon">Name</div>
-             <input name="name" class="form-control" type="nameInput" placeholder="enter name">
+             <input name="name" class="form-control" type="nameInput" placeholder="Enter name">
         </div>
         </div>
     </div>
@@ -113,7 +84,7 @@
         <div class="form-group col-xs-5 col-lg-2">
             <div class="input-group">
                 <div class="input-group-addon">A#</div>
-                <input name="anumb" class="form-control" type="number" placeholder="enter A number without the A">
+                <input name="anumb" class="form-control" type="text" placeholder="Enter A number without the A">
             </div>
         </div>
     </div>
@@ -123,7 +94,7 @@
     <div class="form-group col-xs-5 col-lg-2">
         <div class="input-group">
             <div class="input-group-addon">@</div>
-            <input name="email" class="form-control" type="emailInput" placeholder="enter email">
+            <input name="email" class="form-control" type="emailInput" placeholder="Enter email">
         </div>
         </div>
     </div>
@@ -133,7 +104,16 @@
         <div class="form-group col-xs-5 col-lg-2">
             <div class="input-group">
                 <div class="input-group-addon">Phone</div>
-                <input name="phonenum" class="form-control" type="phoneInput" placeholder="enter phone">
+                <input name="phonenum" class="form-control" type="phoneInput" placeholder="Enter phone">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-xs-5 col-lg-2">
+            <div class="input-group">
+                <div class="input-group-addon">Comments</div>
+                                <textarea name="comments" class="form-control"  rows="3" placeholder="Enter comments here"></textarea>
             </div>
         </div>
     </div>
