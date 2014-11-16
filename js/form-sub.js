@@ -110,11 +110,6 @@ function submitForm() {
 }
 
 
-
-<<<<<<< Updated upstream
-=======
-//this section is to verify the input
->>>>>>> Stashed changes
 $(document).ready(function() {
     $('.registerForm').bootstrapValidator({
         //container: 'tooltip',
@@ -156,7 +151,7 @@ $(document).ready(function() {
                             message: 'The name must be more than 6 and less than 30 characters long'
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z]+$/,
+                            regexp: /^[a-zA-Z ]+$/,
                             message: 'The name can only consist of alphabetical'
                         }
                     }
@@ -180,6 +175,22 @@ $(document).ready(function() {
                         min:10,
                         max:10,
                         message: 'The input is not a valid phone number must be in format 3125673000'
+                    },
+                    digits: {
+                        message: 'The phone number must consist of digits only'
+                    }
+                }
+            },
+
+            anumb: {
+                validators: {
+                    notEmpty: {
+                        message: 'The A# is required and cannot be empty'
+                    },
+                    stringLength:{
+                        min:8,
+                        max:8,
+                        message: 'A valid A# is 8 places long'
                     },
                     digits: {
                         message: 'The phone number must consist of digits only'
