@@ -20,7 +20,7 @@ Template form submission using Firebase for events. Just use firebase hacker pla
 <h1>Specs</h1>
 ==================================
 
-Data Structure of the form responses
+Data Base Structure of the form responses
 -----------------------
 
 <pre>
