@@ -200,6 +200,15 @@ $(document).ready(function() {
                         message: '250 characters max length.'
                     }
                 }
+            },
+
+            'events[]': {
+                validators: {
+                    choice: {
+                        min: 1,
+                        message: 'Please choose 1 event'
+                    }
+                }
             }
 
         }

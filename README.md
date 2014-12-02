@@ -14,7 +14,7 @@ Template form submission using Firebase for events. Just use firebase hacker pla
 - [ ] Figure a way out to send out multiple events results in one email and do this on one html page
 - [ ] Create JS function to create tables of each events data
 
-
+2
 
 <h1>Specs</h1>
 ==================================
