@@ -41,8 +41,9 @@ Date ##/##/##
                         |
     </pre>      
 
-<p>The plan is to have all the events data into one firebase db. 
-    *Possible sub option for person is do they need gear.</p>
+The plan is to have all the events data into one firebase db. 
+    
+    *Possible sub option for person is do they need gear.
 
 The way we will do this is by having a checklist for the events you want to sign up for.
 
@@ -72,6 +73,8 @@ if i < checklist_array.length
 
 ```
 
+Reminder
+*At least one checkbox must be ticked in order to send the form
 
 
 
@@ -79,4 +82,17 @@ if i < checklist_array.length
 
 
 
+<h2>Results</h2>
+==================================
+Table Template
+ ______________________________________________________
+| Positon | Name | A# | Email | Phone | Comment | Time |
+|------------------------------------------------------|
+|         |      |    |       |       |         |      |
+|______________________________________________________|
+
+
+The way to do this quick is to have a JS funciton that will take in the event id and pull data to create the table.
+
+Firebase can't check all its child nodes so I'll have to manually insert the event Id's to the page.
 
