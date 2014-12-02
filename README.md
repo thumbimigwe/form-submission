@@ -96,6 +96,8 @@ Name: Vertical Endeavors Saturday December 3, 6:00pm
 
 corresponding ID: ve_1203_6pm
 
+<abbreviated name of place>_<date>_<time>
+
 
 
 <h2>Results</h2>
