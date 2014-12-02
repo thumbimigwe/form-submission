@@ -44,7 +44,7 @@ Date ##/##/##
 <p>The plan is to have all the events data into one firebase db. 
     *Possible sub option for person is do they need gear.</p>
 
-The way we will do this is by having a 
+The way we will do this is by having a checklist for the events you want to sign up for.
 
 - [ ] Event 1
 - [ ] Event 2
@@ -53,6 +53,24 @@ The way we will do this is by having a
 - [x] Event 5
 
 
+Convert the checked box results into an array
+
+Now we need to go through each checked event and add it to the child node of each event and go through checking if the climber is able to go or not. The results will spit out a string that will be concat with the other results.
+
+Pseudo Code
+
+```
+
+if i < checklist_array.length
+    checkresults(checklist_array[i]); //this will put in the event id 
+
+    //pull the count from that event and check if the climber is able to attend
+    //append climbers information to that event id results
+    //concat results to email_results sring with a new line
+    //increment i
+
+
+```
 
 
 
