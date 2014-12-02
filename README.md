@@ -46,11 +46,11 @@ Date ##/##/##
 
 The way we will do this is by having a 
 
-  <ul>
-    <li><input type="checkbox" disabled> Event 1</li>
-    <li><input type="checkbox" disabled checked> Event 2</li>
-    <li><input type="checkbox" disabled> Event 3</li>
-    </ul>
+- [ ] Event 1
+- [ ] Event 2
+- [ ] Event 3
+- [ ] Event 4
+- [x] Event 5
 
 
 
