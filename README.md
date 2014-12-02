@@ -99,3 +99,12 @@ The way to do this quick is to have a JS funciton that will take in the event id
 
 Firebase can't check all its child nodes so I'll have to manually insert the event Id's to the page.
 
+
+
+<h1>Implementing into Production</h1>
+-------------------------------------
+
+* Boiler plate HTML Form
+* Add Firebase web link to form and results
+* Insert event options for the week
+    -in the form and results page
