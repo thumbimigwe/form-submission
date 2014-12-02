@@ -1,7 +1,18 @@
 Form-Submission
 ===============
 
+Form-Submission is used to automate the events sign up for the climbing club.
+
 Template form submission using Firebase for events. Just use firebase hacker plan.
+
+
+
+<h1>To-Do</h1>
+------
+
+- [ ] Add the check box for multiple events
+- [ ] Figure a way out to send out multiple events results in one email and do this on one html page
+- [ ] Create JS function to create tables of each events data
 
 
 
