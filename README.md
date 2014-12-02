@@ -13,8 +13,9 @@ Template form submission using Firebase for events. Just use firebase hacker pla
 - [ ] Add the check box for multiple events
 - [ ] Figure a way out to send out multiple events results in one email and do this on one html page
 - [ ] Create JS function to create tables of each events data
+- [ ] Remove the results from the form page when done fixing above issues
 
-2
+
 
 <h1>Specs</h1>
 ==================================
@@ -50,10 +51,10 @@ Date ##/##/##
                          |____ Time
                  |____person #
                         |
-    </pre>      
+    </pre>
 
-The plan is to have all the events data into one firebase db. 
-    
+The plan is to have all the events data into one firebase db.
+
     *Possible sub option for person is do they need gear.
 
 The way we will do this is by having a checklist for the events you want to sign up for.
@@ -74,7 +75,7 @@ Pseudo Code
 ```
 
 if i < checklist_array.length
-    checkresults(checklist_array[i]); //this will put in the event id 
+    checkresults(checklist_array[i]); //this will put in the event id
 
     //pull the count from that event and check if the climber is able to attend
     //append climbers information to that event id results
