@@ -85,12 +85,15 @@ Reminder
 <h2>Results</h2>
 ==================================
 Table Template
+
+<pre>
  ______________________________________________________
 | Positon | Name | A# | Email | Phone | Comment | Time |
 |------------------------------------------------------|
 |         |      |    |       |       |         |      |
 |______________________________________________________|
 
+    </pre>
 
 The way to do this quick is to have a JS funciton that will take in the event id and pull data to create the table.
 
