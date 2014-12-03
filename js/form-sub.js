@@ -47,6 +47,9 @@ function isNumeric(n) {
 }
 
 
+
+//add event_id parameter to sendToFireBase function
+
 function sendToFireBase(name, anum, email, phone, comment, timeInMs) {
 
 
