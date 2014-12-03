@@ -27,6 +27,12 @@ function sendEmail(email, name, textIn) {
     });
 }
 
+//write a function getCounter(event_id)
+
+
+
+
+//add a parameter that references the event_id and increments it.
 
 function counterUpdate() {
     positionRef.transaction(function (currentValue) {
