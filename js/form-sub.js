@@ -99,6 +99,7 @@ function submitForm() {
     //Returns the current time in mS
     var timeInMs = Date.now();
 
+    //Final check of input before its sent out to the DB
     if ((name != "" && email != "" && isNumeric(parseInt(anum))) || (name != "" && email != "" && isNumeric(parseInt(anum)) && isNumeric(parseInt(phone)))) {
         sendToFireBase(name, anum, email, phone, comment, timeInMs);
 
