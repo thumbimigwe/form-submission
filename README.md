@@ -127,4 +127,4 @@ Firebase can't check all its child nodes so I'll have to manually insert the eve
 * Insert event options for the week
     - in the form and results page
 
-    //
+    
