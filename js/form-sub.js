@@ -64,20 +64,19 @@ function isNumeric(n) {
 
 //add event_id parameter to sendToFireBase function
 
+
+
+//Create a new js app that will initialize the DB with all the events and create a count 0
+
 function sendToFireBase(name, anum, email, phone, comment, timeInMs) {
 
-
-    //Below is the reference to the counter variable in firebase\
-    //.once was used so that anyone open with the form doesn't see the changes the admin does to the database.
-
         var userTimeRef = scoreListRef.child(name);
+
         //this will call the counter update that will update the /Count/Count variable
         counterUpdate();
-        //userTimeRef.setWithPriority({ name:name, anum: anum, email: email, phone: phone, comment: comment, time:timeInMs}, timeInMs);
 
-        //Displays your current position on the list
 
-        //Add below sendEmail function that throws in an variables of text to say whats up.
+
         //Logic to see if your on the wait list or going
         if (count > 5) {
             var textInp = "Your are on the waitlist for the event. We will contact you if we get an opening. Thanks and Climb On!"
