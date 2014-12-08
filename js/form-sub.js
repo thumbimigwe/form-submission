@@ -47,6 +47,20 @@ function isNumeric(n) {
 }
 
 
+/*
+
+ // Tests to see if /users/<userId> has any data.
+ function checkIfUserExists(userId) {
+ var usersRef = new Firebase(USERS_LOCATION);
+ usersRef.child(userId).once('value', function(snapshot) {
+ var exists = (snapshot.val() !== null);
+ userExistsCallback(userId, exists);
+ });
+ }
+
+ */
+
+
 
 //add event_id parameter to sendToFireBase function
 
@@ -55,16 +69,14 @@ function sendToFireBase(name, anum, email, phone, comment, timeInMs) {
 
     //Below is the reference to the counter variable in firebase\
     //.once was used so that anyone open with the form doesn't see the changes the admin does to the database.
-    positionRef.once("value", function (snapshot) {
-        //count = snapshot.val();
 
         var userTimeRef = scoreListRef.child(name);
         //this will call the counter update that will update the /Count/Count variable
         counterUpdate();
         //userTimeRef.setWithPriority({ name:name, anum: anum, email: email, phone: phone, comment: comment, time:timeInMs}, timeInMs);
-        //alert("Your submission has been saved.")
+
         //Displays your current position on the list
-        //window.alert(count);
+
         //Add below sendEmail function that throws in an variables of text to say whats up.
         //Logic to see if your on the wait list or going
         if (count > 5) {
@@ -79,7 +91,6 @@ function sendToFireBase(name, anum, email, phone, comment, timeInMs) {
         }
 
         userTimeRef.setWithPriority({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: count}, timeInMs);
-    });
 
     //alert(count);
 
