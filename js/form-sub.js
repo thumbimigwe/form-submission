@@ -68,6 +68,8 @@ function isNumeric(n) {
 
 //Create a new js app that will initialize the DB with all the events and create a count 0
 
+
+//add variables firebase, event_id[],
 function sendToFireBase(name, anum, email, phone, comment, timeInMs) {
 
         var userTimeRef = scoreListRef.child(name);
