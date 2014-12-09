@@ -71,60 +71,9 @@ function isNumeric(n) {
 
 
 //add variables firebase, event_id[],
-function sendToFireBase(name, anum, email, phone, comment, timeInMs) {
-
-        var userTimeRef = scoreListRef.child(name);
-
-        //this will call the counter update that will update the /Count/Count variable
-        counterUpdate();
 
 
 
-        //Logic to see if your on the wait list or going
-        if (count > 5) {
-            var textInp = "Your are on the waitlist for the event. We will contact you if we get an opening. Thanks and Climb On!"
-            sendEmail(email, name, textInp);
-            //alert("Your on the waitlist. A confirmation email will be sent to you soon. Please close the page.");
-        }
-        else {
-            var textInpp = "Your are in we will be evaluating the submissions and sending you more detailed email about the event."
-            sendEmail(email, name, textInpp);
-            //alert("Your in! A confirmation email will be sent to you soon. Please close the page.")
-        }
-
-        userTimeRef.setWithPriority({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: count}, timeInMs);
-
-    //alert(count);
-
-}
-
-
-
-function submitForm() {
-
-
-
-    var name = $("#nameInput").val();
-    var anum = $("#anumb").val();
-    var email = $("#emailInput").val();
-    var phone = Number($("#phonenum").val());
-    var comment = $("#commentsIn").val();
-    //Returns the current time in mS
-    var timeInMs = Date.now();
-
-    //Final check of input before its sent out to the DB
-    if ((name != "" && email != "" && isNumeric(parseInt(anum))) || (name != "" && email != "" && isNumeric(parseInt(anum)) && isNumeric(parseInt(phone)))) {
-        sendToFireBase(name, anum, email, phone, comment, timeInMs);
-
-        alert("Your submission has been saved. You will receive an email within the hour. If you have not received the email please contact us at climbing@iit.edu")
-    }
-
-
-    else {
-        alert("Please enter Name,A#,Email, and Phone correctly.")
-        }
-
-}
 
 function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, firebaseref){
 
@@ -137,7 +86,7 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
     eventidFB.child('data/'+ name).setWithPriority({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventidcount, going: going }, timeInMs);
     counterUpdate(eventsid);
 
-    return 'For event:'eventsid + ' you are going:' + going;
+    return 'For event:'+ eventsid + ' you are going:' + going;
 }
 
 
@@ -150,6 +99,8 @@ function newsubmitForm(firebaseref){
     var comment = $("#commentsIn").val();
     //Returns the current time in mS
     var timeInMs = Date.now();
+    alert('newsubmitform');
+
     var eventsarray = $("#events[]").val();
     var resultstr = '';
 
@@ -288,7 +239,7 @@ $(document).ready(function() {
 
             //this causes a infinite loop so i had once is T/F
             if (once){
-                alert("nice");
+                //alert("nice");
                 newsubmitForm(firebaseref);
                 once = false; }
 
