@@ -29,6 +29,7 @@ function sendEmail(email, name, textIn) {
 
 //write a function getCounter(event_id)
 function getCount(eventid){ //eventID is the reference weekdb/eventid/
+    alert('getCount');
     eventid.child('Count').on('value', function (snapshot) {
         return snapshot.val();
     }, function (errorObject) {
@@ -76,12 +77,15 @@ function isNumeric(n) {
 
 
 function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, firebaseref){
-
+    alert(eventsid);
     var eventidFB = firebaseref.child(eventsid);
+    alert("1");
     var eventidcount = getCount(eventsid);
-    var going;
-
+    alert("2");
+    var going = false;
+    alert("3")
     going = eventidcount < 6 ? true : false;
+    alert('submitevent1')
 
     eventidFB.child('data/'+ name).setWithPriority({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventidcount, going: going }, timeInMs);
     counterUpdate(eventsid);
@@ -100,18 +104,19 @@ function newsubmitForm(firebaseref){
     //Returns the current time in mS
     var timeInMs = Date.now();
 
-    var eventsarray = $("#events[]").val();
+    var eventsarray =  document.getElementsByName('events[]');
     var resultstr = '';
-
-    alert(eventsarray);
 
     var i =0;
     while(i < eventsarray.length){
+        if(eventsarray[i].checked) {
+            resultstr = resultstr + "" + submitEvent(name, anum, email, phone, comment, timeInMs, eventsarray[i].value, firebaseref);
+        }
 
-         resultstr= resultstr + ""  +   submitEvent(name, anum, email, phone, comment, timeInMs, eventsarray[i], firebaseref);
-        i=i+1;};
-
-    sendEmail(email, name, resultstr);
+        i=i+1;
+    };
+    alert(resultstr);
+    //sendEmail(email, name, resultstr);
 
     }
 
