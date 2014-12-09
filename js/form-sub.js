@@ -126,8 +126,23 @@ function submitForm() {
 
 }
 
+function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, firebaseref){
 
-function newsubmitForm(){
+    var eventidFB = firebaseref.child(eventsid);
+    var eventidcount = getCount(eventsid);
+    var going;
+
+    going = eventidcount < 6 ? true : false;
+
+    eventidFB.child('data/'+ name).setWithPriority({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventidcount, going: going }, timeInMs);
+    counterUpdate(eventsid);
+
+    return 'For event:'eventsid + ' you are going:' + going;
+}
+
+
+function newsubmitForm(firebaseref){
+
     var name = $("#nameInput").val();
     var anum = $("#anumb").val();
     var email = $("#emailInput").val();
@@ -136,15 +151,19 @@ function newsubmitForm(){
     //Returns the current time in mS
     var timeInMs = Date.now();
     var eventsarray = $("#events[]").val();
+    var resultstr = '';
 
     var i =0;
     while(i < eventsarray.length){
-        submitEvent();
-        i=i+1;}
-           
-    sendEmail(email, name, );
+
+         resultstr= resultstr + ""  +   submitEvent(name, anum, email, phone, comment, timeInMs, eventsarray[i], firebaseref);
+        i=i+1;};
+
+    sendEmail(email, name, resultstr);
 
     }
+
+
 
 
 
@@ -270,7 +289,7 @@ $(document).ready(function() {
             //this causes a infinite loop so i had once is T/F
             if (once){
                 alert("nice");
-                submitForm();
+                newsubmitForm(firebaseref);
                 once = false; }
 
         });

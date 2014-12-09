@@ -37,14 +37,13 @@
 
     <script>
         // Create our Firebase reference
-        var positionRef = new Firebase('https://iit-climbing-test.firebaseio.com/Count');
-        var scoreListRef = new Firebase('https://iit-climbing-test.firebaseio.com//data');
+        //var positionRef = new Firebase('https://iit-climbing-test.firebaseio.com/Count');
+        //var scoreListRef = new Firebase('https://iit-climbing-test.firebaseio.com//data');
 
-        positionRef.on('value', function (snapshot) {
-            count = snapshot.val();
-        }, function (errorObject) {
-            console.log('The read failed: ' + errorObject.code);
-        });
+        var firebaseref = new Firebase('https://iit-climbing-test.firebaseio.com/');
+
+
+
 
     </script>
 </head>
