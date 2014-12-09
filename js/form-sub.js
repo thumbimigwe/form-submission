@@ -28,9 +28,8 @@ function sendEmail(email, name, textIn) {
 }
 
 //write a function getCounter(event_id)
-
 function getCount(eventid){ //eventID is the reference weekdb/eventid/
-    eventID.child('Count').on('value', function (snapshot) {
+    eventid.child('Count').on('value', function (snapshot) {
         return snapshot.val();
     }, function (errorObject) {
         console.log('The read failed: ' + errorObject.code);
@@ -38,10 +37,9 @@ function getCount(eventid){ //eventID is the reference weekdb/eventid/
 }
 
 
-//add a parameter that references the event_id and increments it.
-
-function counterUpdate() {
-    positionRef.transaction(function (currentValue) {
+//add a parampositionRefeter that references the event_id and increments it.
+function counterUpdate(eventid) {
+    eventid.child('Count').transaction(function (currentValue) {
         return (currentValue || 0) + 1
     });
 }
@@ -69,9 +67,6 @@ function isNumeric(n) {
 
 
 //add event_id parameter to sendToFireBase function
-
-
-
 //Create a new js app that will initialize the DB with all the events and create a count 0
 
 
@@ -130,6 +125,27 @@ function submitForm() {
         }
 
 }
+
+
+function newsubmitForm(){
+    var name = $("#nameInput").val();
+    var anum = $("#anumb").val();
+    var email = $("#emailInput").val();
+    var phone = Number($("#phonenum").val());
+    var comment = $("#commentsIn").val();
+    //Returns the current time in mS
+    var timeInMs = Date.now();
+    var eventsarray = $("#events[]").val();
+
+    var i =0;
+    while(i < eventsarray.length){
+        submitEvent();
+        i=i+1;}
+           
+    sendEmail(email, name, );
+
+    }
+
 
 
 $(document).ready(function() {
