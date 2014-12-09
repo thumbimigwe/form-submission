@@ -99,10 +99,11 @@ function newsubmitForm(firebaseref){
     var comment = $("#commentsIn").val();
     //Returns the current time in mS
     var timeInMs = Date.now();
-    alert('newsubmitform');
 
     var eventsarray = $("#events[]").val();
     var resultstr = '';
+
+    alert(eventsarray);
 
     var i =0;
     while(i < eventsarray.length){
