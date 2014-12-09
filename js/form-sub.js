@@ -29,7 +29,13 @@ function sendEmail(email, name, textIn) {
 
 //write a function getCounter(event_id)
 
-
+function getCount(eventid){ //eventID is the reference weekdb/eventid/
+    eventID.child('Count').on('value', function (snapshot) {
+        return snapshot.val();
+    }, function (errorObject) {
+        console.log('The read failed: ' + errorObject.code);
+    });
+}
 
 
 //add a parameter that references the event_id and increments it.
@@ -238,16 +244,18 @@ $(document).ready(function() {
         .on('success.form.bv', function(e) {
             // Prevent submit form
             e.preventDefault();
+
             var once = true;
+
             var $form     = $(e.target),
                 validator = $form.data('bootstrapValidator');
             $form.find('.alert').html('Thanks for signing up. Now you can sign in as ' + validator.getFieldElements('username').val()).show();
 
-            //this causes a infinite loop how to fix?
+            //this causes a infinite loop so i had once is T/F
             if (once){
-            alert("nice");
-            submitForm();
-            once = false; }
+                alert("nice");
+                submitForm();
+                once = false; }
 
         });
 });
