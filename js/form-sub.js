@@ -28,9 +28,9 @@ function sendEmail(email, name, textIn) {
 }
 
 //write a function getCounter(event_id)
-function getCount(eventid){ //eventID is the reference weekdb/eventid/
-    alert('getCount');
-    eventid.child('Count').on('value', function (snapshot) {
+function getCount(eventidfb){ //eventID is the reference weekdb/eventid/
+    alert('getCount function');
+    eventidfb.child('Count').on('value', function (snapshot) {
         return snapshot.val();
     }, function (errorObject) {
         console.log('The read failed: ' + errorObject.code);
@@ -77,18 +77,28 @@ function isNumeric(n) {
 
 
 function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, firebaseref){
-    alert(eventsid);
-    var eventidFB = firebaseref.child(eventsid);
-    alert("1");
-    var eventidcount = getCount(eventsid);
-    alert("2");
-    var going = false;
-    alert("3")
-    going = eventidcount < 6 ? true : false;
-    alert('submitevent1')
 
-    eventidFB.child('data/'+ name).setWithPriority({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventidcount, going: going }, timeInMs);
-    counterUpdate(eventsid);
+    var eventidFB = firebaseref.child(eventsid);
+
+    eventidFB.child('Count').once('value', function(nameSnapshot) {
+        alert(nameSnapshot.val());});
+
+
+
+    var eventidcount = getCount(eventidFB);
+
+    var going = false;
+    going = eventidcount < 6 ? true : false;
+    alert(eventidFB.toString());
+
+    alert(eventidcount);
+
+    eventidFB.child('data/testname').set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventidcount, going: going }, timeInMs);
+
+    alert('counterupdate');
+    counterUpdate(eventidFB.toString());
+
+    alert('before the return');
 
     return 'For event:'+ eventsid + ' you are going:' + going;
 }
