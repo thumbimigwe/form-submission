@@ -29,13 +29,9 @@ function sendEmail(email, name, textIn) {
 
 //write a function getCounter(event_id)
 function getCount(eventidfb){ //eventID is the reference weekdb/eventid/
-    alert('getCount function');
-    eventidfb.child('Count').on('value', function (snapshot) {
-        return snapshot.val();
-    }, function (errorObject) {
-        console.log('The read failed: ' + errorObject.code);
-    });
-}
+    eventidfb.child('Count').once('value', function(nameSnapshot) {
+        return nameSnapshot.val();
+});}
 
 
 //add a parampositionRefeter that references the event_id and increments it.
