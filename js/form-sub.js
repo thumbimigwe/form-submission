@@ -75,26 +75,35 @@ function isNumeric(n) {
 function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, firebaseref){
 
     var eventidFB = firebaseref.child(eventsid.toString());
+    //had to initalize the eventcount since it was throwing me errors
+    var eventcount = 999;
 
-    eventidFB.child('Count').on('value', function(nameSnapshot) {
-        var eventcount = nameSnapshot.val();
+    //for some reason this function below is not running and keeping eventcount as 999
+    //I had to implement getCount inside this function since it was returning me null but same exact code works fine here
+    eventidFB.child('Count').on('value', function (snapshot) {
+        eventcount = snapshot.val();
+        console.log('firebase count:' + eventcount)
+    }, function (errorObject) {
+        console.log('The read failed: ' + errorObject.code);
+    });
 
     var going = false;
+    going = eventcount < 6 ? true : false;
 
-        going = eventcount < 6 ? true : false;
-    alert(eventidFB.toString());
+   console.log(eventidFB.toString());
 
-    alert(eventcount);
+    console.log('eventcount'+eventcount);
 
-    eventidFB.child('data/testname').set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventidcount, going: going });
+    console.log('right before posting to the firebase')
+    eventidFB.child('data/testname').set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventcount, going: going });
 
     alert('counterupdate');
-    counterUpdate(eventidFB.toString());
+    //counterUpdate(firebaseref);
 
     alert('before the return');
 
     return 'For event:'+ eventsid.toString() + ' you are going:' + going.toString();
-});}
+}
 
 
 function newsubmitForm(firebaseref){
@@ -109,7 +118,7 @@ function newsubmitForm(firebaseref){
 
     var eventsarray =  document.getElementsByName('events[]');
     var resultstr = '';
-
+    console.log('before the while loop')
     var i =0;
     while(i < eventsarray.length){
         if(eventsarray[i].checked) {
