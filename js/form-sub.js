@@ -95,7 +95,7 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
     console.log('eventcount'+eventcount);
 
     console.log('right before posting to the firebase')
-    eventidFB.child('data/testname').set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventcount, going: going });
+    eventidFB.child('data/'+ name.toString()).set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventcount, going: going });
 
     alert('counterupdate');
     //counterUpdate(firebaseref);
