@@ -79,7 +79,7 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
     var eventcount = 999;
 
     //for some reason this function below is not running and keeping eventcount as 999
-    //I had to implement getCount inside this function since it was returning me null but same exact code works fine here
+    //I had to implement getCount inside this function since it was returning me null but same exact code *used to* works fine here
     eventidFB.child('Count').on('value', function (snapshot) {
         eventcount = snapshot.val();
         console.log('firebase count:' + eventcount)
@@ -127,7 +127,7 @@ function newsubmitForm(firebaseref){
 
         i=i+1;
     };
-    alert(resultstr);
+    console.log(resultstr);
     //sendEmail(email, name, resultstr);
 
     }
