@@ -82,7 +82,6 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
     //I had to implement getCount inside this function since it was returning me null but same exact code *used to* works fine here
     eventidFB.child('Count').on('value', function (snapshot) {
         eventcount = snapshot.val();
-        console.log('firebase count:' + eventcount)
     }, function (errorObject) {
         console.log('The read failed: ' + errorObject.code);
     });
@@ -97,7 +96,7 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
     console.log('right before posting to the firebase')
     eventidFB.child('data/'+ name.toString()).set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventcount, going: going });
 
-    alert('counterupdate');
+    console.log('counterupdate');
     //counterUpdate(firebaseref);
 
     alert('before the return');
