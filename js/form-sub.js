@@ -74,30 +74,27 @@ function isNumeric(n) {
 
 function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, firebaseref){
 
-    var eventidFB = firebaseref.child(eventsid);
+    var eventidFB = firebaseref.child(eventsid.toString());
 
-    eventidFB.child('Count').once('value', function(nameSnapshot) {
-        alert(nameSnapshot.val());});
-
-
-
-    var eventidcount = getCount(eventidFB);
+    eventidFB.child('Count').on('value', function(nameSnapshot) {
+        var eventcount = nameSnapshot.val();
 
     var going = false;
-    going = eventidcount < 6 ? true : false;
+
+        going = eventcount < 6 ? true : false;
     alert(eventidFB.toString());
 
-    alert(eventidcount);
+    alert(eventcount);
 
-    eventidFB.child('data/testname').set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventidcount, going: going }, timeInMs);
+    eventidFB.child('data/testname').set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventidcount, going: going });
 
     alert('counterupdate');
     counterUpdate(eventidFB.toString());
 
     alert('before the return');
 
-    return 'For event:'+ eventsid + ' you are going:' + going;
-}
+    return 'For event:'+ eventsid.toString() + ' you are going:' + going.toString();
+});}
 
 
 function newsubmitForm(firebaseref){
