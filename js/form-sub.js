@@ -80,16 +80,19 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
 
     //for some reason this function below is not running and keeping eventcount as 999
     //I had to implement getCount inside this function since it was returning me null but same exact code *used to* works fine here
+
+    //eventidFB.set({Count: 7});
+
     eventidFB.child('Count').on('value', function (snapshot) {
-        eventcount = snapshot.val();
-    }, function (errorObject) {
-        console.log('The read failed: ' + errorObject.code);
+        eventcount1 = snapshot.val();
     });
+
+    console.log('new count, ' + eventcount1);
 
     var going = false;
     going = eventcount < 6 ? true : false;
 
-   console.log(eventidFB.toString());
+   //console.log(eventidFB.toString());
 
     console.log('eventcount'+eventcount);
 
