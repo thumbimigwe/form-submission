@@ -29,7 +29,7 @@ function sendEmail(email, name, textIn) {
 
 //write a function getCounter(event_id)
 function getCount(eventidfb){ //eventID is the reference weekdb/eventid/
-    eventidfb.child('Count').once('value', function(nameSnapshot) {
+    eventidfb.child('Count').on('value', function(nameSnapshot) {
         return nameSnapshot.val();
 });}
 
@@ -75,19 +75,21 @@ function isNumeric(n) {
 function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, firebaseref){
 
     var eventidFB = firebaseref.child(eventsid.toString());
+    var eventidcount = eventidFB.child('Count');
+
+    var eventidcount1 = new Firebase(eventidFB.toString()+'Count');
+
     //had to initalize the eventcount since it was throwing me errors
     var eventcount = 999;
 
     //for some reason this function below is not running and keeping eventcount as 999
     //I had to implement getCount inside this function since it was returning me null but same exact code *used to* works fine here
 
-    //eventidFB.set({Count: 7});
-
-    eventidFB.child('Count').on('value', function (snapshot) {
-        eventcount1 = snapshot.val();
+    eventidcount.on('value', function (snapshot) {
+        eventcount = snapshot.val();
     });
 
-    console.log('new count, ' + eventcount1);
+    console.log('new count, ' + eventcount);
 
     var going = false;
     going = eventcount < 6 ? true : false;
