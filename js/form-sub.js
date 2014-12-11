@@ -30,7 +30,8 @@ function sendEmail(email, name, textIn) {
 //write a function getCounter(event_id)
 function getCount(eventidfb){ //eventID is the reference weekdb/eventid/
     eventidfb.child('Count').on('value', function(nameSnapshot) {
-        return nameSnapshot.val();
+        console.log('HEres the console of event2' +  nameSnapshot.val());
+
 });}
 
 
@@ -77,18 +78,22 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
     var eventidFB = firebaseref.child(eventsid.toString());
     var eventidcount = eventidFB.child('Count');
 
-    var eventidcount1 = new Firebase(eventidFB.toString()+'Count');
 
-    //had to initalize the eventcount since it was throwing me errors
-    var eventcount = 999;
 
     //for some reason this function below is not running and keeping eventcount as 999
     //I had to implement getCount inside this function since it was returning me null but same exact code *used to* works fine here
+    //possibly put the counts back into the html script tag how it was before
+    //eventcount can only be acessed inside the .on function since its assynchronous
 
-    eventidcount.on('value', function (snapshot) {
+    eventidcount.on('value', function(snapshot) {
         eventcount = snapshot.val();
+        alert('this is inside the .on function' + eventcount)
+        eventcount = eventcount;
     });
 
+
+    //everything below must be thrown inside .on() function but I do not want it to post to firebase when ever theres a change in count
+    //one way to do this is if notsubmited=true run this code and when .onComplete change notsubmited= false and disconnect from the firebase app.
     console.log('new count, ' + eventcount);
 
     var going = false;
@@ -124,6 +129,7 @@ function newsubmitForm(firebaseref){
     var resultstr = '';
     console.log('before the while loop')
     var i =0;
+
     while(i < eventsarray.length){
         if(eventsarray[i].checked) {
             resultstr = resultstr + "" + submitEvent(name, anum, email, phone, comment, timeInMs, eventsarray[i].value, firebaseref);

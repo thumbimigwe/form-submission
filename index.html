@@ -39,6 +39,13 @@
 
         // Create our Firebase reference
         var firebaseref = new Firebase('https://iit-climbing-test.firebaseio.com//');
+
+
+        //this below is a hack and shouldn't be used
+        firebaseref.child('event1/Count').on('value', function(snapshot) {
+            var eventcount = snapshot.val();
+        });
+
     </script>
 
 </head>
