@@ -85,6 +85,8 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
     //possibly put the counts back into the html script tag how it was before
     //eventcount can only be acessed inside the .on function since its assynchronous
 
+    //new problem arises with above fix. we have to go through multiple events
+
     eventidcount.on('value', function(snapshot) {
         eventcount = snapshot.val();
         alert('this is inside the .on function' + eventcount)
