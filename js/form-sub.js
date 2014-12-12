@@ -84,35 +84,26 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
     //I had to implement getCount inside this function since it was returning me null but same exact code *used to* works fine here
     //possibly put the counts back into the html script tag how it was before
     //eventcount can only be acessed inside the .on function since its assynchronous
-
     //new problem arises with above fix. we have to go through multiple events
 
-    eventidcount.on('value', function(snapshot) {
+
+    var going = false;
+
+    eventidcount.once('value', function(snapshot , going) {
         eventcount = snapshot.val();
-        alert('this is inside the .on function' + eventcount)
-        eventcount = eventcount;
+        var going = false;
+        going = eventcount < 6 ? true : false;
+
+        eventidFB.child('data/'+ name.toString()).set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventcount, going: going });
+        console.log('going?' + going)
+        return going;
     });
 
 
     //everything below must be thrown inside .on() function but I do not want it to post to firebase when ever theres a change in count
     //one way to do this is if notsubmited=true run this code and when .onComplete change notsubmited= false and disconnect from the firebase app.
-    console.log('new count, ' + eventcount);
 
-    var going = false;
-    going = eventcount < 6 ? true : false;
-
-   //console.log(eventidFB.toString());
-
-    console.log('eventcount'+eventcount);
-
-    console.log('right before posting to the firebase')
-    eventidFB.child('data/'+ name.toString()).set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventcount, going: going });
-
-    console.log('counterupdate');
-    //counterUpdate(firebaseref);
-
-    alert('before the return');
-
+    console.log('outside going' + going);
     return 'For event:'+ eventsid.toString() + ' you are going:' + going.toString();
 }
 
