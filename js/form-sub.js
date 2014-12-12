@@ -48,6 +48,12 @@ function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+function savedata(data){
+    resultsstring=resultsstring+data;
+
+    console.log('in save data'+resultsstring);
+}
+
 
 /*
 
@@ -90,13 +96,15 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
     var going = false;
 
     eventidcount.once('value', function(snapshot , going) {
-        eventcount = snapshot.val();
+        var eventcount = snapshot.val();
         var going = false;
         going = eventcount < 6 ? true : false;
 
         eventidFB.child('data/'+ name.toString()).set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventcount, going: going });
-        console.log('going?' + going)
-        return going;
+        console.log('going?' + going);
+        savedata(going.toString());//this works to save the data add in event_id and
+
+        //if this doesn't work we can just send a separate email for each event.
     });
 
 
@@ -105,6 +113,8 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
 
     console.log('outside going' + going);
     return 'For event:'+ eventsid.toString() + ' you are going:' + going.toString();
+
+    console.log('resultsstr'+resultsstring);
 }
 
 
