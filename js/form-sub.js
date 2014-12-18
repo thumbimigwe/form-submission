@@ -1,11 +1,13 @@
-function sendEmail(email, name, textIn) {
+var resultsstring='';
+
+function sendEmail(email, name, subject, textIn) {
 
     data = {
         "key": "WXc4Rig_JDUopd-yhuOhlw",
         "message": {
             "html": textIn,
-            "text": textIn,
-            "subject": "IIT Climbing - VE 09/03/14",
+            "text": textIn + 'We will meet up next to MTCC Global Grounds. Please show up 10 minutes earlier than time shown. We expect you to bring your gear if not please contact us.',
+            "subject": "IIT Climbing " + subject,
             "from_email": "iitclimbing@gmail.com",
             "from_name": "IIT Climbing",
             "to": [
@@ -50,13 +52,18 @@ function isNumeric(n) {
 
 function savedata(data){
     resultsstring=resultsstring+data;
-
-    console.log('in save data'+resultsstring);
 }
 
+function decypherEventID(eventidstr){
+    // ve_1230_6pm
+    // aa_####_#am/pm
+    // two letter of gym  _  date  _ time
+
+    return 'Gym: ' + eventidstr.toUpperCase().substr(0,1) + ' Date:' + eventidstr.substr(3,4) +'/'+ eventidstr.substr(5,6) + 'Time:' eventidstr.substr(7,eventidstr.stringLength);
+
+}
 
 /*
-
  // Tests to see if /users/<userId> has any data.
  function checkIfUserExists(userId) {
  var usersRef = new Firebase(USERS_LOCATION);
@@ -65,16 +72,11 @@ function savedata(data){
  userExistsCallback(userId, exists);
  });
  }
-
  */
-
-
 
 //add event_id parameter to sendToFireBase function
 //Create a new js app that will initialize the DB with all the events and create a count 0
 
-
-//add variables firebase, event_id[],
 
 
 
@@ -84,14 +86,11 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
     var eventidFB = firebaseref.child(eventsid.toString());
     var eventidcount = eventidFB.child('Count');
 
-
-
     //for some reason this function below is not running and keeping eventcount as 999
     //I had to implement getCount inside this function since it was returning me null but same exact code *used to* works fine here
     //possibly put the counts back into the html script tag how it was before
     //eventcount can only be acessed inside the .on function since its assynchronous
     //new problem arises with above fix. we have to go through multiple events
-
 
     var going = false;
 
@@ -102,19 +101,14 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
 
         eventidFB.child('data/'+ name.toString()).set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventcount, going: going });
         console.log('going?' + going);
-        savedata(going.toString());//this works to save the data add in event_id and
-
+        //savedata(going.toString());//this works to save the data add in event_id and
+        sendEmail(email, name, decypherEventID(eventsid),'going: ' + going);
         //if this doesn't work we can just send a separate email for each event.
     });
 
 
     //everything below must be thrown inside .on() function but I do not want it to post to firebase when ever theres a change in count
     //one way to do this is if notsubmited=true run this code and when .onComplete change notsubmited= false and disconnect from the firebase app.
-
-    console.log('outside going' + going);
-    return 'For event:'+ eventsid.toString() + ' you are going:' + going.toString();
-
-    console.log('resultsstr'+resultsstring);
 }
 
 
@@ -129,24 +123,14 @@ function newsubmitForm(firebaseref){
     var timeInMs = Date.now();
 
     var eventsarray =  document.getElementsByName('events[]');
-    var resultstr = '';
-    console.log('before the while loop')
+    console.log('before the while loop');
     var i =0;
 
     while(i < eventsarray.length){
         if(eventsarray[i].checked) {
-            resultstr = resultstr + "" + submitEvent(name, anum, email, phone, comment, timeInMs, eventsarray[i].value, firebaseref);
+            submitEvent(name, anum, email, phone, comment, timeInMs, eventsarray[i].value, firebaseref);
         }
-
-        i=i+1;
-    };
-    console.log(resultstr);
-    //sendEmail(email, name, resultstr);
-
-    }
-
-
-
+        i=i+1;}}
 
 
 $(document).ready(function() {
