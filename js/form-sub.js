@@ -1,11 +1,11 @@
-var resultsstring='';
+//var resultsstring='';
 
 function sendEmail(email, name, subject, textIn) {
 
     data = {
         "key": "WXc4Rig_JDUopd-yhuOhlw",
         "message": {
-            "html": textIn,
+            "html": textIn + 'We will meet up next to MTCC Global Grounds. Please show up 10 minutes earlier than time shown. We expect you to bring your gear if not please contact us.',
             "text": textIn + 'We will meet up next to MTCC Global Grounds. Please show up 10 minutes earlier than time shown. We expect you to bring your gear if not please contact us.',
             "subject": "IIT Climbing " + subject,
             "from_email": "iitclimbing@gmail.com",
@@ -28,18 +28,18 @@ function sendEmail(email, name, subject, textIn) {
             data: data});
     });
 }
-
+/*
 //write a function getCounter(event_id)
 function getCount(eventidfb){ //eventID is the reference weekdb/eventid/
     eventidfb.child('Count').on('value', function(nameSnapshot) {
         console.log('HEres the console of event2' +  nameSnapshot.val());
 
-});}
+});}*/
 
 
 //add a parampositionRefeter that references the event_id and increments it.
 function counterUpdate(eventid) {
-    eventid.child('Count').transaction(function (currentValue) {
+    eventid.transaction(function (currentValue) {
         return (currentValue || 0) + 1
     });
 }
@@ -50,16 +50,13 @@ function isNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-function savedata(data){
-    resultsstring=resultsstring+data;
-}
 
 function decypherEventID(eventidstr){
     // ve_1230_6pm
     // aa_####_#am/pm
     // two letter of gym  _  date  _ time
-
-    return 'Gym: ' + eventidstr.toUpperCase().substr(0,1) + ' Date:' + eventidstr.substr(3,4) +'/'+ eventidstr.substr(5,6) + 'Time:' eventidstr.substr(7,eventidstr.stringLength);
+    var decypherstringrtr='Gym:' + eventidstr.toUpperCase().substr(0,2) + ' Date:' + eventidstr.substr(3,2) +'/'+ eventidstr.substr(5,2) + ' Time:' + eventidstr.substr(8,eventidstr.stringLength);
+    return decypherstringrtr;
 
 }
 
@@ -98,12 +95,13 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
         var eventcount = snapshot.val();
         var going = false;
         going = eventcount < 6 ? true : false;
+        counterUpdate(eventidcount);
 
         eventidFB.child('data/'+ name.toString()).set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventcount, going: going });
         console.log('going?' + going);
-        //savedata(going.toString());//this works to save the data add in event_id and
-        sendEmail(email, name, decypherEventID(eventsid),'going: ' + going);
-        //if this doesn't work we can just send a separate email for each event.
+
+        //I couldnt save the results into one string so seperate emails for each event
+        sendEmail(email, name, decypherEventID(eventsid.toString()),'going: ' + going);
     });
 
 
@@ -130,7 +128,11 @@ function newsubmitForm(firebaseref){
         if(eventsarray[i].checked) {
             submitEvent(name, anum, email, phone, comment, timeInMs, eventsarray[i].value, firebaseref);
         }
-        i=i+1;}}
+        i=i+1;}
+
+    alert('Your responses has been submitted. You will receive a confirmation email within the hour.');
+    //Firebase.goOffline();
+}
 
 
 $(document).ready(function() {
