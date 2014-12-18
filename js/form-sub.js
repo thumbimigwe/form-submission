@@ -132,6 +132,10 @@ function newsubmitForm(firebaseref){
 
     alert('Your responses has been submitted. You will receive a confirmation email within the hour.');
     //Firebase.goOffline();
+    setTimeout(function(){
+        window.open('','_self').close();
+    }, 2000);
+
 }
 
 
