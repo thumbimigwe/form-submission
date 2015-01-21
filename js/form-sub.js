@@ -60,6 +60,24 @@ function decypherEventID(eventidstr){
 
 }
 
+
+
+$(function() {
+
+    var events_in = ["event_1_date", "event_2_date"],
+        events_in_count = events_in.length,
+        i = 0;
+
+    for(;i<events_in_count;i++) {
+
+        $('#checkboxes').append('<div class="checkbox"><label><input type="checkbox" name="events[]" value="ve_1230_6pm" />VE - 12/30 - 6pm</label></div>');
+
+    }
+
+});
+
+
+
 /*
  // Tests to see if /users/<userId> has any data.
  function checkIfUserExists(userId) {
