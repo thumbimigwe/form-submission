@@ -55,8 +55,26 @@ function decypherEventID(eventidstr){
     // ve_1230_6pm
     // aa_####_#am/pm
     // two letter of gym  _  date  _ time
-    var decypherstringrtr='Gym:' + eventidstr.toUpperCase().substr(0,2) + ' Date:' + eventidstr.substr(3,2) +'/'+ eventidstr.substr(5,2) + ' Time:' + eventidstr.substr(8,eventidstr.stringLength);
-    return decypherstringrtr;
+    switch(eventidstr.toUpperCase().substr(0,2)){
+        case "VE":
+            gym_name='Vertical Endeavors'
+            break;
+        case "BB":
+            gym_name="Brooklyn Boulders"
+            break;
+        case "CO":
+            gym_name="Climb On"
+            break;
+        case "HP":
+            gym_name="Hidden Peak"
+            break
+        default :
+            gym_name="No gym found"
+            break;
+    }
+//eventidstr.toUpperCase().substr(0,2)
+    var decypherstringrtr=gym_name + ' on ' + eventidstr.substr(3,2) +'/'+ eventidstr.substr(5,2) + ' ' + eventidstr.substr(8,eventidstr.stringLength);
+    return decypherstringrtr.toString();
 
 }
 
@@ -64,13 +82,15 @@ function decypherEventID(eventidstr){
 
 $(function() {
 
-    var events_in = ["event_1_date", "event_2_date"],
+    var events_in = ["ve_1230_6pm", "event_2_date"],
         events_in_count = events_in.length,
         i = 0;
 
     for(;i<events_in_count;i++) {
+        //alert(event_in[i]);
+       var events_name= String(decypherEventID(events_in[i]));
 
-        $('#checkboxes').append('<div class="checkbox"><label><input type="checkbox" name="events[]" value="ve_1230_6pm" />VE - 12/30 - 6pm</label></div>');
+        $('#checkboxes').append('<div class="checkbox"><label><input type="checkbox" name="events[]" value=""'+ events_name +'" />'+ events_name +'</label></div>');
 
     }
 
