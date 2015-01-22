@@ -136,9 +136,9 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
         counterUpdate(eventidcount);
 
         eventidFB.child('data/'+ name.toString()).set({ name: name, anum: anum, email: email, phone: phone, comment: comment, time: timeInMs, count: eventcount, going: going });
-        console.log('going?' + going);
+        //console.log('going?' + going);
 
-        //I couldnt save the results into one string so seperate emails for each event
+        //I couldnt save the results into one string so seperate emails for each event till solution is found
         sendEmail(email, name, decypherEventID(eventsid.toString()),'going: ' + going);
     });
 
