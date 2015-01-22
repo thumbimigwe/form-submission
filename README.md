@@ -13,6 +13,7 @@ form
 - [x] Add the check box for multiple events
 - [ ] Figure a way out to send out multiple events results in one email and do this on one html page
     - seperate email for each event is sent out at the moment
+- [ ] Create new FB db that controls what fb the data writes to, date of the week, and array input for the checkboxes
 
 form-results
 - [ ] Create JS function to create tables of each events data
