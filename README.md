@@ -9,9 +9,12 @@ Template form submission using Firebase for events. Just use firebase hacker pla
 
 <h1>To-Do</h1>
 ------
-
-- [ ] Add the check box for multiple events
+form
+- [x] Add the check box for multiple events
 - [ ] Figure a way out to send out multiple events results in one email and do this on one html page
+    - seperate email for each event is sent out at the moment
+
+form-results
 - [ ] Create JS function to create tables of each events data
 - [ ] Remove the results from the form page when done fixing above issues
 
