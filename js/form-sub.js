@@ -90,7 +90,7 @@ $(function() {
         //alert(event_in[i]);
        var events_name= String(decypherEventID(events_in[i]));
 
-        $('#checkboxes').append('<div class="checkbox"><label><input type="checkbox" name="events[]" value=""'+ events_name +'" />'+ events_name +'</label></div>');
+        $('#checkboxes').append('<div class="checkbox"><label><input type="checkbox" name="events[]" value=""'+ events_in[i] +'" />'+ events_name +'</label></div>');
 
     }
 
