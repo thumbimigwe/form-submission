@@ -87,14 +87,9 @@ $(function() {
         i = 0;
 
     for(;i<events_in_count;i++) {
-        //alert(event_in[i]);
        var events_name= String(decypherEventID(events_in[i]));
-
         $('#checkboxes').append('<div class="checkbox"><label><input type="checkbox" name="events[]" value=""'+ events_in[i] +'" />'+ events_name +'</label></div>');
-
-    }
-
-});
+    }});
 
 
 
@@ -117,7 +112,7 @@ $(function() {
 
 
 function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, firebaseref){
-
+    //alert(eventsid); //it crashes here
     var eventidFB = firebaseref.child(eventsid.toString());
     var eventidcount = eventidFB.child('Count');
 
@@ -159,6 +154,7 @@ function newsubmitForm(firebaseref){
     var timeInMs = Date.now();
 
     var eventsarray =  document.getElementsByName('events[]');
+    //alert(eventsarray[0]);
     console.log('before the while loop');
     var i =0;
 
@@ -168,7 +164,7 @@ function newsubmitForm(firebaseref){
         }
         i=i+1;}
 
-    alert('Your responses has been submitted. You will receive a confirmation email within the hour.');
+    alert('Your responses has been submitted. You will receive a confirmation email within the hour. Please close this page');
     //Firebase.goOffline();
     setTimeout(function(){
         window.open('','_self').close();
