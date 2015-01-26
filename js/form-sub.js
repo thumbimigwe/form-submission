@@ -82,7 +82,7 @@ function decypherEventID(eventidstr){
 
 $(function() {
 
-    var events_in = ["ve_1230_6pm", "event_2_date"],
+    var events_in = ["ve_0129_5pm","hp_0130_5pm","ve_0131_10am"],
         events_in_count = events_in.length,
         i = 0;
 
