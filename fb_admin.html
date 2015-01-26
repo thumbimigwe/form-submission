@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+
+
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function createBranch(){
+        //events_in must be in format event_1_334,event_2_234,etc...
+
+        var events_in_array = $("#events_in").val().split(',');
+        var events_in_count = events_in_array.length,
+                i = 0;
+
+        //create firebase ref here
+        var firebase_idnew = new Firebase($("#firebase_id").val());
+
+        //alert(events_in_array+'    '+firebase_idnew);
+
+        //iterate through array and post 0 to count of each event.
+        for(;i<events_in_count;i++) {
+            setTimeout(firebase_idnew.child(events_in_array[i].toString()).set({Count: 0}),1000);
+            alert(firebase_idnew);
+            //alert(events_in_array[i].toString());
+        }
+        setTimeout(alert('Complete'),5000);
+    };
+
+
+</script>
+
+<form onsubmit="createBranch()">
+    Firebase ID:  <input type="text" name="firebase_id" id="firebase_id" />
+    <br>
+    Events Array  <input type="text" name="events_in" id="events_in" />
+    <button type="submit"  >Submit</button>
+
+</form>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="https://cdn.firebase.com/js/client/1.0.15/firebase.js"></script>
+<script type="text/javascript"></script>
+
+</body>
+</html>
