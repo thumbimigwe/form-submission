@@ -10,6 +10,9 @@ function sendEmail(email, name, subject,going) {
     else{
         textIn="We are full but we will let you know if a spot opens up. If you signed up for a beginners event please reply to this email if you feel like you qualify we can always change the list."
     }
+
+    textIn="Your response has been saved. You will receive a confirmation email within 48 hours of the event."
+    
     data = {
         "key": "WXc4Rig_JDUopd-yhuOhlw",
         "message": {
