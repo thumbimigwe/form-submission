@@ -1,12 +1,20 @@
 //var resultsstring='';
 
-function sendEmail(email, name, subject, textIn) {
+function sendEmail(email, name, subject,going) {
 
+
+    if (going == true){
+        textIn="You are going. We will meet up next to MTCC Global Grounds. Please show up 10 minutes earlier than time shown. We expect you to bring your gear if not please contact us. ***Disclaimer: If you signed up for a special event we have the right to remove people off of the list.***"
+
+    }
+    else{
+        textIn="We are full but we will let you know if a spot opens up."
+    }
     data = {
         "key": "WXc4Rig_JDUopd-yhuOhlw",
         "message": {
-            "html": textIn + 'We will meet up next to MTCC Global Grounds. Please show up 10 minutes earlier than time shown. We expect you to bring your gear if not please contact us.',
-            "text": textIn + 'We will meet up next to MTCC Global Grounds. Please show up 10 minutes earlier than time shown. We expect you to bring your gear if not please contact us.',
+            "html": textIn,
+            "text": textIn,
             "subject": "IIT Climbing " + subject,
             "from_email": "iitclimbing@gmail.com",
             "from_name": "IIT Climbing",
@@ -134,7 +142,7 @@ function submitEvent(name, anum, email, phone, comment, timeInMs, eventsid, fire
         //console.log('going?' + going);
 
         //I couldnt save the results into one string so seperate emails for each event till solution is found
-        sendEmail(email, name, decypherEventID(eventsid.toString()),'going: ' + going);
+        sendEmail(email, name, decypherEventID(eventsid.toString()),going);
     });
 
 
